@@ -43,5 +43,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Swansea-q3pd.ttf</string>
+		<string>SwanseaBold-D0ox.ttf</string>
+		<string>SwanseaBoldItalic-p3Dv.ttf</string>
+		<string>SwanseaItalic-AwqD.ttf</string>
+	</array>
 </dict>
 </plist>
