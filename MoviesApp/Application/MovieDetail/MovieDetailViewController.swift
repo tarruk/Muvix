@@ -10,6 +10,8 @@ import UIKit
 class MovieDetailViewController: BaseViewController {
 
 
+    @IBOutlet weak var imageStackContainerTop: NSLayoutConstraint!
+    @IBOutlet weak var imageStackContainer: UIView!
     @IBOutlet weak var subscriptionButtonTop: NSLayoutConstraint!
     @IBOutlet weak var imageStackView: UIStackView!
     @IBOutlet weak var overviewTitleLabel: UILabel!
@@ -17,18 +19,18 @@ class MovieDetailViewController: BaseViewController {
     @IBOutlet weak var subscriptionButton: UIButton!
     @IBOutlet weak var movieDateLabel: UILabel!
     @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var imageStackTop: NSLayoutConstraint!
+    
     @IBOutlet weak var movieImageHeight: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var movieImage: UIImageView!
     
-    var currentMovie: Movie
+    var viewModel: MovieDetailViewModel
     var initialImageViewHeight: CGFloat?
     
-    init(movie: Movie) {
-        self.currentMovie = movie
+    init(viewModel: MovieDetailViewModel) {
+        self.viewModel = viewModel
         super.init()
         
     }
@@ -42,13 +44,7 @@ class MovieDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetup()
-        configureViews()
-        if let imageURL = currentMovie._imageURL {
-            backgroundImage.getImage(from: imageURL)
-            movieImage.getImage(from: imageURL)
-            colorView.backgroundColor = self.movieImage.image?.averageColor
-            self.movieImage.radius(3)
-        }
+        observerSetup()
         configureScrollView()
     }
     
@@ -69,42 +65,64 @@ class MovieDetailViewController: BaseViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func configureViews() {
-        if let movieName = currentMovie.orgTitle {
-            self.movieTitleLabel.configure(
-                text: movieName.capitalized,
-                color: .white,
-                font: Fonts.SwanSea.bold.sized(24)
-            )
-        }
+    func observerSetup() {
+        viewModel.movieImageUrl.distinctUntilChanged()
+            .subscribe(
+                onNext: { [weak self] imageURL in
+                    guard let self = self,
+                          let imageURL = imageURL else {return}
+                    self.backgroundImage.getImage(from: imageURL)
+                    self.movieImage.getImage(from: imageURL)
+                    self.colorView.backgroundColor = self.movieImage.image?.averageColor
+                    self.movieImage.radius(3)
+                }).disposed(by: disposeBag)
+      
+        viewModel.movieTitle.distinctUntilChanged()
+            .subscribe(
+                onNext: { [weak self] movieTitle in
+                    guard let self = self,
+                          let movieTitle = movieTitle else {return}
+                    self.movieTitleLabel.configure(
+                        text: movieTitle,
+                        color: .white,
+                        font: Fonts.SwanSea.bold.sized(24)
+                    )
+                }).disposed(by: disposeBag)
         
-        if let movieDate = currentMovie.releaseDate {
-            self.movieDateLabel.configure(
-                text: movieDate,
-                color: .white,
-                font: Fonts.SwanSea.regular.sized(16)
-            )
-        }
+        viewModel.movieOverview.distinctUntilChanged()
+            .subscribe(
+                onNext: { [weak self] movieOverview in
+                    guard let self = self,
+                          let movieOverview = movieOverview else {return}
+                    self.movieDescriptionLabel.configure(
+                        text: movieOverview,
+                        color: .white,
+                        font: Fonts.SwanSea.regular.sized(14)
+                    )
+                }).disposed(by: disposeBag)
         
+        viewModel.movieReleaseDate.distinctUntilChanged()
+            .subscribe(
+                onNext: { [weak self] movieReleaseDate in
+                    guard let self = self,
+                          let movieReleaseDate = movieReleaseDate else {return}
+                    self.movieDateLabel.configure(
+                        text: movieReleaseDate,
+                        color: .white,
+                        font: Fonts.SwanSea.regular.sized(16)
+                    )
+                }).disposed(by: disposeBag)
+       
         subscriptionButton.unselectedCustom(title: "subscribirme")
         
         overviewTitleLabel.configure(text: "OVERVIEW", color: .black, font: Fonts.SwanSea.bold.sized(14))
-        
-        if let movieDescription = currentMovie.description {
-            self.movieDescriptionLabel.configure(
-                text: movieDescription,
-                color: .white,
-                font: Fonts.SwanSea.regular.sized(14)
-            )
-    
-        }
         
     }
     
     func configureScrollView(){
         scrollView.delegate = self
         scrollView.contentInset = UIEdgeInsets(
-            top: self.imageStackView.frame.height + self.imageStackTop.constant  ,
+            top: self.imageStackContainer.frame.height,
             left: 0,
             bottom: 0,
             right: 0
@@ -124,15 +142,16 @@ extension MovieDetailViewController: UIScrollViewDelegate {
         let initialTopOffset = scrollView.contentInset.top
         let normalizedContentOffset = scrollView.contentOffset.y + initialTopOffset
         print(normalizedContentOffset)
+        
         if normalizedContentOffset > 0 {
-            imageStackTop.constant = -normalizedContentOffset * 0.3
+            imageStackContainerTop.constant = -normalizedContentOffset * 0.3
             movieImageHeight.constant = initialImageViewHeight - normalizedContentOffset
-           
+//            self.subscriptionButtonTop.constant = normalizedContentOffset * 0.3
             if movieImageHeight.constant <= 140 {
                 UIView.animate(withDuration: 1) {
                     self.movieImage.alpha = 0
-                    self.imageStackTop.constant = -40
-                    self.subscriptionButtonTop.constant = normalizedContentOffset * 0.3
+                    self.imageStackContainerTop.constant = -70
+                    
                 }
             } else {
                 UIView.animate(withDuration: 1) {
@@ -142,6 +161,7 @@ extension MovieDetailViewController: UIScrollViewDelegate {
         } else {
           
             movieImageHeight.constant = initialImageViewHeight - normalizedContentOffset
+          
         }
         
         

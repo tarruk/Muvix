@@ -127,10 +127,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let movie = viewModel?.movies.value[indexPath.row] else {
+        guard let viewModel = viewModel?.getViewModel(index: indexPath.row) else {
             return
         }
-        let vc = MovieDetailViewController(movie: movie)
+        let vc = MovieDetailViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

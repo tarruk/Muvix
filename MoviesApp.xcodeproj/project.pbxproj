@@ -48,6 +48,7 @@
 		F53EEB3825FD597700B98E15 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53EEB3625FD597700B98E15 /* MovieDetailViewController.xib */; };
 		F53EEB3C25FD5AD500B98E15 /* UINavigationController + convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEB3B25FD5AD500B98E15 /* UINavigationController + convenience.swift */; };
 		F53EEB4625FD748900B98E15 /* UIButton + convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEB4525FD748900B98E15 /* UIButton + convenience.swift */; };
+		F5CF274D25FE39FF00E22DB0 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF274C25FE39FF00E22DB0 /* MovieDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		F53EEB3625FD597700B98E15 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
 		F53EEB3B25FD5AD500B98E15 /* UINavigationController + convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + convenience.swift"; sourceTree = "<group>"; };
 		F53EEB4525FD748900B98E15 /* UIButton + convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + convenience.swift"; sourceTree = "<group>"; };
+		F5CF274C25FE39FF00E22DB0 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 			children = (
 				F53EEB3525FD597700B98E15 /* MovieDetailViewController.swift */,
 				F53EEB3625FD597700B98E15 /* MovieDetailViewController.xib */,
+				F5CF274C25FE39FF00E22DB0 /* MovieDetailViewModel.swift */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				F520D0F925FC1FD600050089 /* BaseViewController.swift in Sources */,
 				F53EEB3C25FD5AD500B98E15 /* UINavigationController + convenience.swift in Sources */,
 				F520D11025FC25A700050089 /* UIColor + convenience.swift in Sources */,
+				F5CF274D25FE39FF00E22DB0 /* MovieDetailViewModel.swift in Sources */,
 				F53EEAD825FCF70C00B98E15 /* Fonts.swift in Sources */,
 				F53EEB2725FD50D600B98E15 /* SubscribedMoviesTableViewCell.swift in Sources */,
 				F53EEAB825FCDEEF00B98E15 /* BaseViewComponent.swift in Sources */,

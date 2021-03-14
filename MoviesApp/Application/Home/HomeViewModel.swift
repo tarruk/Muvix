@@ -104,6 +104,10 @@ class HomeViewModel {
                 }).disposed(by: disposeBag)
     }
     
+    func getViewModel(index: Int) -> MovieDetailViewModel {
+        return MovieDetailViewModel(movie: movies.value[index])
+    }
+    
     
     
 }
