@@ -7,19 +7,28 @@
 
 import UIKit
 
+
+protocol SubscribedMoviesTableViewCellDelegate: class {
+    func openMovieDetail(with index: Int)
+}
+
 class SubscribedMoviesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        backgroundColor = Colors.backgroundBlack
-    }
-
+    
     var subscribedMovies: [Movie] = [] {
         didSet {
             self.collectionView.reloadData()
         }
     }
+    weak var delegate: SubscribedMoviesTableViewCellDelegate?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = Colors.backgroundBlack
+    }
+
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -27,8 +36,14 @@ class SubscribedMoviesTableViewCell: UITableViewCell {
     }
     
     
-    func configureCell(with movies: [Movie]) {
-        collectionViewSetup()
+    func configureCell(with movies: [Movie], delegate: SubscribedMoviesTableViewCellDelegate) {
+        self.delegate = delegate
+        collectionView
+            .setup(
+                delegate: self,
+                dataSource: self,
+                cells: [SubscribedMovieCollectionViewCell.self]
+            )
         self.subscribedMovies = movies
     }
     
@@ -37,15 +52,7 @@ class SubscribedMoviesTableViewCell: UITableViewCell {
 
 extension SubscribedMoviesTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    func collectionViewSetup() {
-        collectionView.dataSource   = self
-        collectionView.delegate     = self
-        
-        collectionView.register(UINib(nibName: "SubscribedMovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SubscribedMovieCollectionViewCell")
-        
-        collectionView.reloadData()
-    }
-    
+  
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.subscribedMovies.count
@@ -67,6 +74,10 @@ extension SubscribedMoviesTableViewCell: UICollectionViewDelegateFlowLayout, UIC
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.openMovieDetail(with: indexPath.row)
     }
     
     

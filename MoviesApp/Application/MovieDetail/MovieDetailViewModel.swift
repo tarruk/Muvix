@@ -18,6 +18,7 @@ class MovieDetailViewModel {
     var movieTitle      : BehaviorRelay<String?> = .init(value: nil)
     var movieReleaseDate: BehaviorRelay<String?> = .init(value: nil)
     var movieOverview   : BehaviorRelay<String?> = .init(value: nil)
+    var movieSubscription: BehaviorRelay<Bool>   = .init(value: false)
     
     init(movie: Movie) {
         self.movie = movie
@@ -30,8 +31,13 @@ class MovieDetailViewModel {
         let releaseYear = movie.releaseDate?.components(separatedBy: "-").first
         movieReleaseDate.accept(releaseYear)
         movieOverview.accept(movie.description?.capitalized)
+        movieSubscription.accept(movie._subscribed)
     }
     
+    func subscribeButtonPressed() {
+        self.movie._subscribed.toggle()
+        self.movieSubscription.accept(movie._subscribed)
+    }
     
     
 }

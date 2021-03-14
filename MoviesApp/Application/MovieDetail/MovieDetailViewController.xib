@@ -98,14 +98,17 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntT-rm-5d3">
-                                    <rect key="frame" x="90" y="80" width="234" height="45"/>
+                                    <rect key="frame" x="90" y="50" width="234" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="uqa-XN-tS7"/>
                                     </constraints>
                                     <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="subscribe:" destination="-1" eventType="touchUpInside" id="qNh-Zg-AkK"/>
+                                    </connections>
                                 </button>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="91K-DR-LAT">
-                                    <rect key="frame" x="37" y="165" width="340" height="670"/>
+                                    <rect key="frame" x="37" y="115" width="340" height="670"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="OVERVIEW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgC-fD-4rO">
                                             <rect key="frame" x="0.0" y="0.0" width="340" height="20.5"/>
@@ -117,7 +120,7 @@
                                             <rect key="frame" x="0.0" y="20.5" width="340" height="649.5"/>
                                             <attributedString key="attributedText">
                                                 <fragment>
-                                                    <mutableString key="content">Breaking Bad is an American crime drama television series created and produced by Vince Gilligan. Set and produced in Albuquerque, New Mexico, Breaking Bad is the story of Walter White, a struggling high school chemistry teacher who is diagnosed with inoperable lung cancer at the beginning of the series. He turns to a life of crime, producing and selling methamphetamine, in order to secure his family's financial future before he dies, teaming with his former student, Jesse Pinkman. Heavily serialized, the series is known for positioning its characters in seemingly inextricable corners and has been labeled a contemporary western by its creator.</mutableString>
+                                                    <string key="content">Breaking Bad is an American crime drama television series created and produced by Vince Gilligan. Set and produced in Albuquerque, New Mexico, Breaking Bad is the story of Walter White, a struggling high school chemistry teacher who is diagnosed with inoperable lung cancer at the beginning of the series. He turns to a life of crime, producing and selling methamphetamine, in order to secure his family's financial future before he dies, teaming with his former student, Jesse Pinkman. Heavily serialized, the series is known for positioning its characters in seemingly inextricable corners and has been labeled a contemporary western by its creator.</string>
                                                     <attributes>
                                                         <font key="NSFont" metaFont="system" size="17"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" paragraphSpacingBefore="2" lineHeightMultiple="2" tighteningFactorForTruncation="0.0"/>
@@ -132,7 +135,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="91K-DR-LAT" firstAttribute="leading" secondItem="Lcr-hJ-ioE" secondAttribute="leading" constant="37" id="8or-qd-fSP"/>
-                                <constraint firstItem="91K-DR-LAT" firstAttribute="top" secondItem="ntT-rm-5d3" secondAttribute="bottom" constant="40" id="Oet-Ir-rVF"/>
+                                <constraint firstItem="91K-DR-LAT" firstAttribute="top" secondItem="ntT-rm-5d3" secondAttribute="bottom" constant="20" id="Oet-Ir-rVF"/>
                                 <constraint firstAttribute="trailing" secondItem="91K-DR-LAT" secondAttribute="trailing" constant="37" id="ZSg-dK-X6w"/>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="91K-DR-LAT" secondAttribute="bottom" constant="20" id="lpB-QK-l1X"/>
                                 <constraint firstItem="ntT-rm-5d3" firstAttribute="leading" secondItem="Lcr-hJ-ioE" secondAttribute="leading" constant="90" id="m5p-oH-Vb1"/>
@@ -156,7 +159,7 @@
                 <constraint firstItem="7xm-2u-R9m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8iw-zi-Ur2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7xm-2u-R9m" secondAttribute="trailing" id="9Qp-zr-sao"/>
                 <constraint firstItem="Lcr-hJ-ioE" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="999" id="E3g-FB-m7C"/>
-                <constraint firstItem="ntT-rm-5d3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="80" id="Gpo-bu-S33"/>
+                <constraint firstItem="ntT-rm-5d3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="Gpo-bu-S33"/>
                 <constraint firstItem="Lcr-hJ-ioE" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="OQ4-mv-Vmf"/>
                 <constraint firstAttribute="bottom" secondItem="7xm-2u-R9m" secondAttribute="bottom" id="PQp-q2-1RE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HxW-Ux-unT" secondAttribute="trailing" id="Pmd-Hy-kmu"/>

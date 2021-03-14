@@ -10,7 +10,7 @@ import UIKit
 
 extension UILabel {
     
-    func configure(text: String, color: UIColor, font: UIFont, alignment: NSTextAlignment? = nil, alpha: CGFloat? = nil ){
+    func configure(text: String, color: UIColor, font: UIFont, alignment: NSTextAlignment? = nil, alpha: CGFloat? = nil, shadowColor: UIColor? = nil ){
         self.text       = text
         self.textColor  = color
         self.font       = font
@@ -21,6 +21,13 @@ extension UILabel {
             self.textAlignment = alignment
         }
         
-        
+        if let shadowColor = shadowColor {
+            self.addShadow(color: shadowColor)
+        }
+    }
+    
+    func addShadow(color: UIColor? = nil) {
+        shadowColor = color ?? .black
+        shadowOffset = CGSize(width: 1, height: 1)
     }
 }

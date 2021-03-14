@@ -36,11 +36,12 @@ class PreviewTableViewCell: UITableViewCell {
             movieNameLabel.configure(
                 text: name,
                 color: .white,
-                font: Fonts.SwanSea.bold.sized(24)
+                font: Fonts.SwanSea.bold.sized(24),
+                shadowColor: .black
             )
         } else {
             movieNameLabel.configure(
-                text: "Supergirl",
+                text: "",
                 color: .white,
                 font: Fonts.SwanSea.bold.sized(24)
             )

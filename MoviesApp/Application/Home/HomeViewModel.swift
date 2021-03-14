@@ -21,6 +21,7 @@ class HomeViewModel {
     enum Sections: CaseIterable {
         case Subscripted
         case AllMovies
+        
         func name()->String {
             switch self {
             case .AllMovies:
@@ -49,8 +50,10 @@ class HomeViewModel {
         }
     }
     var movies: BehaviorRelay<[Movie]> = .init(value: [])
-    let sections = Sections.allCases
-    
+    var sections: [Sections] {
+        return self.getSubscribedMovies().isEmpty ? [.AllMovies] : Sections.allCases
+    }
+   
     init() {
         fetchGenres()
     }
@@ -104,9 +107,21 @@ class HomeViewModel {
                 }).disposed(by: disposeBag)
     }
     
-    func getViewModel(index: Int) -> MovieDetailViewModel {
-        return MovieDetailViewModel(movie: movies.value[index])
+    func getSubscribedMovies() -> [Movie] {
+        return movies.value.filter({$0._subscribed})
     }
+    
+    func getMovieDetailViewModel(index: Int, subscribed: Bool? = nil) -> MovieDetailViewModel {
+        if let subscribed = subscribed, subscribed == true {
+            return MovieDetailViewModel(movie: getSubscribedMovies()[index])
+        } else {
+            return MovieDetailViewModel(movie: movies.value[index])
+        }
+        
+        
+    }
+    
+    
     
     
     

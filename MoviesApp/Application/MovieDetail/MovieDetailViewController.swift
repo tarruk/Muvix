@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MovieDetailViewControllerDelegate: class {
+    func subscribeButtonPressed()
+}
+
 class MovieDetailViewController: BaseViewController {
 
 
@@ -28,9 +32,11 @@ class MovieDetailViewController: BaseViewController {
     
     var viewModel: MovieDetailViewModel
     var initialImageViewHeight: CGFloat?
+    weak var delegate: MovieDetailViewControllerDelegate?
     
-    init(viewModel: MovieDetailViewModel) {
-        self.viewModel = viewModel
+    init(viewModel: MovieDetailViewModel, delegate: MovieDetailViewControllerDelegate) {
+        self.delegate   = delegate
+        self.viewModel  = viewModel
         super.init()
         
     }
@@ -85,8 +91,10 @@ class MovieDetailViewController: BaseViewController {
                     self.movieTitleLabel.configure(
                         text: movieTitle,
                         color: .white,
-                        font: Fonts.SwanSea.bold.sized(24)
+                        font: Fonts.SwanSea.bold.sized(24),
+                        shadowColor: .black
                     )
+                   
                 }).disposed(by: disposeBag)
         
         viewModel.movieOverview.distinctUntilChanged()
@@ -97,7 +105,8 @@ class MovieDetailViewController: BaseViewController {
                     self.movieDescriptionLabel.configure(
                         text: movieOverview,
                         color: .white,
-                        font: Fonts.SwanSea.regular.sized(14)
+                        font: Fonts.SwanSea.regular.sized(14),
+                        shadowColor: .black
                     )
                 }).disposed(by: disposeBag)
         
@@ -109,13 +118,21 @@ class MovieDetailViewController: BaseViewController {
                     self.movieDateLabel.configure(
                         text: movieReleaseDate,
                         color: .white,
-                        font: Fonts.SwanSea.regular.sized(16)
+                        font: Fonts.SwanSea.regular.sized(16),
+                        shadowColor: .black
                     )
                 }).disposed(by: disposeBag)
        
-        subscriptionButton.unselectedCustom(title: "subscribirme")
+        
         
         overviewTitleLabel.configure(text: "OVERVIEW", color: .black, font: Fonts.SwanSea.bold.sized(14))
+        
+        viewModel.movieSubscription
+            .subscribe(
+                onNext: { [weak self] subscription in
+                    guard let self = self else {return}
+                    subscription ? self.subscriptionButton.subscribedCustom(title: "subscripto", titleColor: self.colorView.backgroundColor ?? .black) : self.subscriptionButton.unsubscribedCustom(title: "subscribirme")
+                }).disposed(by: disposeBag)
         
     }
     
@@ -129,10 +146,16 @@ class MovieDetailViewController: BaseViewController {
         )
     }
     
-
+    @IBAction func subscribe(_ sender: Any) {
+        viewModel.subscribeButtonPressed()
+        delegate?.subscribeButtonPressed()
+        
+    }
+    
 }
 
 
+//MARK: - Scroll Animations -
 extension MovieDetailViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -146,11 +169,12 @@ extension MovieDetailViewController: UIScrollViewDelegate {
         if normalizedContentOffset > 0 {
             imageStackContainerTop.constant = -normalizedContentOffset * 0.3
             movieImageHeight.constant = initialImageViewHeight - normalizedContentOffset
-//            self.subscriptionButtonTop.constant = normalizedContentOffset * 0.3
+            
             if movieImageHeight.constant <= 140 {
                 UIView.animate(withDuration: 1) {
                     self.movieImage.alpha = 0
                     self.imageStackContainerTop.constant = -70
+                
                     
                 }
             } else {

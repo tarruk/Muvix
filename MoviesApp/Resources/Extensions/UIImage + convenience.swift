@@ -10,6 +10,22 @@ import UIKit
 
 
 extension UIImage {
+    
+    
+    func tint(with fillColor: UIColor) -> UIImage? {
+        let image = withRenderingMode(.alwaysTemplate)
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        fillColor.set()
+        image.draw(in: CGRect(origin: .zero, size: size))
+
+        guard let imageColored = UIGraphicsGetImageFromCurrentImageContext() else {
+            return nil
+        }
+        
+        UIGraphicsEndImageContext()
+        return imageColored
+    }
+    
     var averageColor: UIColor? {
         guard let inputImage = CIImage(image: self) else { return nil }
         let extentVector = CIVector(x: inputImage.extent.origin.x, y: inputImage.extent.origin.y, z: inputImage.extent.size.width, w: inputImage.extent.size.height)

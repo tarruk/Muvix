@@ -25,6 +25,8 @@ class Movie: Codable {
     var voteAverage     : Double?
     var voteCount       : Int?
     var _selectedGenre  : MovieGenre?
+    var _added          : Bool = false
+    var _subscribed     : Bool = false
     var _imageURL: String? {
         if let image = self.posterPath {
             return "https://image.tmdb.org/t/p/w500/\(image)"

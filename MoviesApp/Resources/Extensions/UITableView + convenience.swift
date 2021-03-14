@@ -19,7 +19,7 @@ extension UITableView {
         self.dataSource = dataSource
         
         cells.forEach { [weak self] cell in
-            self?.register(cell.self, forCellReuseIdentifier: String(describing: cell.self))
+            register(UINib(nibName: String(describing: cell.self), bundle: nil), forCellReuseIdentifier: String(describing: cell.self))
         }
         
         self.reloadData()
@@ -27,6 +27,10 @@ extension UITableView {
     
     func createCell(_ cell: UITableViewCell.Type,and indexPath: IndexPath) -> UITableViewCell {
         return self.dequeueReusableCell(withIdentifier: String(describing: cell.self), for: indexPath)
+    }
+    
+    func createHeader(_ cell: UITableViewCell.Type) -> UITableViewCell? {
+        return self.dequeueReusableCell(withIdentifier: String(describing: cell.self))
     }
     
     
