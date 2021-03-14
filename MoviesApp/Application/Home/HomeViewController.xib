@@ -19,59 +19,23 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oi1-g6-qD5">
-                    <rect key="frame" x="0.0" y="44" width="414" height="50"/>
-                    <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="-25" translatesAutoresizingMaskIntoConstraints="NO" id="S6x-0z-G5f">
-                            <rect key="frame" x="20" y="0.0" width="374" height="50"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="980-g6-F7C">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="980-g6-F7C" secondAttribute="height" multiplier="1:1" id="5lT-Ws-tgz"/>
-                                        <constraint firstAttribute="height" constant="50" id="Gmz-Pu-G3G"/>
-                                    </constraints>
-                                    <state key="normal" image="search_icon"/>
-                                </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TV Show Reminder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyx-YD-efz">
-                                    <rect key="frame" x="25" y="0.0" width="349" height="50"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </stackView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="1eb-uJ-5h7"/>
-                        <constraint firstAttribute="trailing" secondItem="S6x-0z-G5f" secondAttribute="trailing" constant="20" id="ZS5-FE-TM9"/>
-                        <constraint firstItem="S6x-0z-G5f" firstAttribute="top" secondItem="Oi1-g6-qD5" secondAttribute="top" id="fhO-vJ-j2L"/>
-                        <constraint firstAttribute="bottom" secondItem="S6x-0z-G5f" secondAttribute="bottom" id="vbI-Bd-QB8"/>
-                        <constraint firstItem="S6x-0z-G5f" firstAttribute="leading" secondItem="Oi1-g6-qD5" secondAttribute="leading" constant="20" id="x2B-yA-8nq"/>
-                    </constraints>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yjb-AP-goJ">
-                    <rect key="frame" x="0.0" y="94" width="414" height="802"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="Yjb-AP-goJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5uv-tB-4dx"/>
                 <constraint firstAttribute="bottom" secondItem="Yjb-AP-goJ" secondAttribute="bottom" id="JHB-m8-t2u"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Yjb-AP-goJ" secondAttribute="trailing" id="K2u-Gr-otN"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oi1-g6-qD5" secondAttribute="trailing" id="f63-ZG-X75"/>
                 <constraint firstItem="Yjb-AP-goJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tSi-ci-1WD"/>
-                <constraint firstItem="Oi1-g6-qD5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tuT-a1-sha"/>
-                <constraint firstItem="Oi1-g6-qD5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="u0b-Jh-cd5"/>
-                <constraint firstItem="Yjb-AP-goJ" firstAttribute="top" secondItem="Oi1-g6-qD5" secondAttribute="bottom" id="wuM-4V-oSF"/>
             </constraints>
             <point key="canvasLocation" x="67" y="104"/>
         </view>
     </objects>
     <resources>
-        <image name="search_icon" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

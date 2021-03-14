@@ -18,12 +18,23 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.backgroundBlack
+        navigationBarSetup()
         tableView.backgroundColor = Colors.backgroundBlack
         tableViewSetup()
         setDataBridge()
         
     }
     
+    func navigationBarSetup() {
+        let leftBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_icon"), style: .plain, target: self, action: #selector(presentSearchView))
+        leftBarButton.tintColor = .white
+        configNav(leftButton: leftBarButton, title: "TV Show Reminder")
+    }
+    
+    
+    @objc func presentSearchView() {
+        
+    }
     func setDataBridge() {
         viewModel = HomeViewModel()
         viewModel?.movies
@@ -113,6 +124,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         case .none: return UITableViewCell()
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let movie = viewModel?.movies.value[indexPath.row] else {
+            return
+        }
+        let vc = MovieDetailViewController(movie: movie)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

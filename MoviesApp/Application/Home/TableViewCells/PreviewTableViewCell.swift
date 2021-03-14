@@ -48,8 +48,8 @@ class PreviewTableViewCell: UITableViewCell {
         
         
         
-        if let image = movie.posterPath {
-            self.movieImage.getImage(from: "https://image.tmdb.org/t/p/w500/\(image)")
+        if let image = movie._imageURL {
+            self.movieImage.getImage(from: image)
             self.movieImage.contentMode = .scaleAspectFill
         } else {
             self.movieImage.image = #imageLiteral(resourceName: "moviePlaceholder 1")

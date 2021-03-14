@@ -43,6 +43,11 @@
 		F53EEB2825FD50D600B98E15 /* SubscribedMoviesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53EEB2625FD50D600B98E15 /* SubscribedMoviesTableViewCell.xib */; };
 		F53EEB2D25FD517B00B98E15 /* SubscribedMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEB2B25FD517B00B98E15 /* SubscribedMovieCollectionViewCell.swift */; };
 		F53EEB2E25FD517B00B98E15 /* SubscribedMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53EEB2C25FD517B00B98E15 /* SubscribedMovieCollectionViewCell.xib */; };
+		F53EEB3225FD58D400B98E15 /* UIImage + convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEB3125FD58D400B98E15 /* UIImage + convenience.swift */; };
+		F53EEB3725FD597700B98E15 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEB3525FD597700B98E15 /* MovieDetailViewController.swift */; };
+		F53EEB3825FD597700B98E15 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53EEB3625FD597700B98E15 /* MovieDetailViewController.xib */; };
+		F53EEB3C25FD5AD500B98E15 /* UINavigationController + convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEB3B25FD5AD500B98E15 /* UINavigationController + convenience.swift */; };
+		F53EEB4625FD748900B98E15 /* UIButton + convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEB4525FD748900B98E15 /* UIButton + convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +91,11 @@
 		F53EEB2625FD50D600B98E15 /* SubscribedMoviesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubscribedMoviesTableViewCell.xib; sourceTree = "<group>"; };
 		F53EEB2B25FD517B00B98E15 /* SubscribedMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedMovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		F53EEB2C25FD517B00B98E15 /* SubscribedMovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubscribedMovieCollectionViewCell.xib; sourceTree = "<group>"; };
+		F53EEB3125FD58D400B98E15 /* UIImage + convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + convenience.swift"; sourceTree = "<group>"; };
+		F53EEB3525FD597700B98E15 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		F53EEB3625FD597700B98E15 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
+		F53EEB3B25FD5AD500B98E15 /* UINavigationController + convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + convenience.swift"; sourceTree = "<group>"; };
+		F53EEB4525FD748900B98E15 /* UIButton + convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +175,7 @@
 		F520D0EE25FC1F8600050089 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				F53EEB3425FD594B00B98E15 /* MovieDetail */,
 				F520D0EF25FC1F9900050089 /* Home */,
 			);
 			path = Application;
@@ -207,6 +218,9 @@
 				F53EEAD325FCF25400B98E15 /* UILabel + convenience.swift */,
 				F53EEAEB25FCFF8900B98E15 /* UIView + convenience.swift */,
 				F53EEAF125FD047900B98E15 /* UIImageView + convenience.swift */,
+				F53EEB3125FD58D400B98E15 /* UIImage + convenience.swift */,
+				F53EEB3B25FD5AD500B98E15 /* UINavigationController + convenience.swift */,
+				F53EEB4525FD748900B98E15 /* UIButton + convenience.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -290,6 +304,15 @@
 			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
+		F53EEB3425FD594B00B98E15 /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F53EEB3525FD597700B98E15 /* MovieDetailViewController.swift */,
+				F53EEB3625FD597700B98E15 /* MovieDetailViewController.xib */,
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -349,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F53EEB3825FD597700B98E15 /* MovieDetailViewController.xib in Resources */,
 				F53EEB2825FD50D600B98E15 /* SubscribedMoviesTableViewCell.xib in Resources */,
 				F53EEAE625FCF7DF00B98E15 /* SwanseaItalic-AwqD.ttf in Resources */,
 				F520D0E225FC1DB900050089 /* LaunchScreen.storyboard in Resources */,
@@ -413,9 +437,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F53EEB1625FD3E8900B98E15 /* MovieGenre.swift in Sources */,
+				F53EEB4625FD748900B98E15 /* UIButton + convenience.swift in Sources */,
 				F53EEB1025FD199500B98E15 /* PreviewHeaderTableViewCell.swift in Sources */,
 				F53EEAD425FCF25400B98E15 /* UILabel + convenience.swift in Sources */,
 				F53EEAC525FCE47F00B98E15 /* Movie.swift in Sources */,
+				F53EEB3725FD597700B98E15 /* MovieDetailViewController.swift in Sources */,
 				F53EEAC925FCE4B000B98E15 /* MoviesPack.swift in Sources */,
 				F53EEAB125FCDB3D00B98E15 /* Network.swift in Sources */,
 				F520D0FD25FC206800050089 /* BaseNavigationController.swift in Sources */,
@@ -431,10 +457,12 @@
 				F53EEAEC25FCFF8900B98E15 /* UIView + convenience.swift in Sources */,
 				F53EEAEF25FD024E00B98E15 /* HomeViewModel.swift in Sources */,
 				F520D0F925FC1FD600050089 /* BaseViewController.swift in Sources */,
+				F53EEB3C25FD5AD500B98E15 /* UINavigationController + convenience.swift in Sources */,
 				F520D11025FC25A700050089 /* UIColor + convenience.swift in Sources */,
 				F53EEAD825FCF70C00B98E15 /* Fonts.swift in Sources */,
 				F53EEB2725FD50D600B98E15 /* SubscribedMoviesTableViewCell.swift in Sources */,
 				F53EEAB825FCDEEF00B98E15 /* BaseViewComponent.swift in Sources */,
+				F53EEB3225FD58D400B98E15 /* UIImage + convenience.swift in Sources */,
 				F53EEB2D25FD517B00B98E15 /* SubscribedMovieCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,27 +9,17 @@ import Foundation
 import UIKit
 
 
-struct BorderView {
-    var width: CGFloat
-    var color: CGColor
-}
-
 extension UIView {
     
-    func configUI(backgroundColor: UIColor, alpha: CGFloat? = nil, borderRadius: CGFloat? = nil, border: BorderView? = nil) {
+    func configUI(backgroundColor: UIColor, alpha: CGFloat? = nil, borderRadius: CGFloat? = nil) {
         self.backgroundColor = backgroundColor
         self.alpha = alpha ?? 1
         self.layer.cornerRadius = borderRadius ?? 0
-        
-        if let border = border {
-            self.layer.borderWidth = border.width
-            self.layer.borderColor = border.color
-            
-        }
     }
     
-    func border(width: CGFloat, color: UIColor) -> BorderView {
-        return BorderView(width: width, color: color.cgColor)
+    func border(width: CGFloat, color: UIColor) {
+        self.layer.borderWidth = width
+        self.layer.borderColor = color.cgColor
     }
     
     func roundHalf(){
