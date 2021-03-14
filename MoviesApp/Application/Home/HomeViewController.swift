@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: BaseViewController {
 
+    @IBOutlet weak var scrollTopButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     var viewModel : HomeViewModel?
@@ -17,6 +18,7 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollTopButton.isHidden = true
         view.backgroundColor = Colors.backgroundBlack
         navigationBarSetup()
         tableView.backgroundColor = Colors.backgroundBlack
@@ -30,8 +32,10 @@ class HomeViewController: BaseViewController {
             ]
         )
         setDataBridge()
+        notificationsListener()
         
     }
+    
     
   
     
@@ -60,8 +64,19 @@ class HomeViewController: BaseViewController {
                 }).disposed(by: disposeBag)
     }
     
+    func notificationsListener() {
+        NotificationCenter.default.addObserver(forName: .updateSubscribedMovies, object: nil, queue: nil) { (_) in
+            self.tableView.reloadData()
+        }
+    }
     
     
+    
+    @IBAction func scrollToTop(_ sender: Any) {
+        self.tableView.isScrollEnabled = false
+        self.tableView.contentOffset.y = 0
+        self.tableView.isScrollEnabled = true
+    }
     
     
 
@@ -70,6 +85,20 @@ class HomeViewController: BaseViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    
+        if scrollView.contentOffset.y > 0 {
+            UIView.animate(withDuration: 1) {
+                self.scrollTopButton.isHidden = false
+                self.scrollTopButton.alpha = 1
+            }
+        } else {
+            UIView.animate(withDuration: 1) {
+                self.scrollTopButton.alpha = 0
+            }
+        }
+    }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
             let scrollOffset = scrollView.contentOffset.y
@@ -155,3 +184,4 @@ extension HomeViewController: SubscribedMoviesTableViewCellDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+

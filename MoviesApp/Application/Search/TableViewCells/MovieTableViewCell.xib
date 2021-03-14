@@ -51,19 +51,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="241" height="125"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvS-FA-4xb">
-                                                <rect key="frame" x="0.0" y="0.0" width="152" height="125"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="141" height="125"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J75-Wp-gr9">
-                                                        <rect key="frame" x="0.0" y="10" width="152" height="41"/>
+                                                        <rect key="frame" x="0.0" y="10" width="141" height="41"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpp-kE-iOZ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="152" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="141" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glI-l8-n07">
-                                                                <rect key="frame" x="0.0" y="20.5" width="152" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="20.5" width="141" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="f0b-9J-fo0"/>
                                                                 </constraints>
@@ -83,13 +83,13 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rz4-Fv-Ig8">
-                                                <rect key="frame" x="162" y="0.0" width="79" height="125"/>
+                                                <rect key="frame" x="151" y="0.0" width="90" height="125"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ayw-hd-mCS">
-                                                        <rect key="frame" x="0.0" y="25.5" width="79" height="21"/>
+                                                        <rect key="frame" x="0.0" y="25.5" width="90" height="21"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="width" constant="90" id="cqP-11-jaM"/>
                                                             <constraint firstAttribute="height" constant="21" id="d0g-0A-6pX"/>
-                                                            <constraint firstAttribute="width" constant="79" id="qEH-hK-DPL"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Swansea" family="Swansea" pointSize="12"/>
                                                         <state key="normal" title="AGREGAR">
@@ -147,11 +147,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="addMovieButton" destination="Ayw-hd-mCS" id="8ju-lI-pEX"/>
                 <outlet property="lineView" destination="egq-eZ-Vs4" id="KhZ-zX-eL7"/>
                 <outlet property="movieGenreLabel" destination="glI-l8-n07" id="aJV-ug-dR7"/>
                 <outlet property="movieImage" destination="vkh-Qx-5G6" id="9Cm-0f-Svi"/>
                 <outlet property="movieTitleLabel" destination="cpp-kE-iOZ" id="Tt2-um-c7S"/>
+                <outlet property="subscribeButton" destination="Ayw-hd-mCS" id="8ju-lI-pEX"/>
             </connections>
             <point key="canvasLocation" x="145.6521739130435" y="117.1875"/>
         </tableViewCell>

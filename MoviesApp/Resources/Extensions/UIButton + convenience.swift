@@ -11,40 +11,29 @@ import UIKit
 extension UIButton {
     
     
-    func subscribedCustom(title: String, titleColor: UIColor) {
-        self.roundHalf()
-        self.setTitle(title.uppercased(), for: [])
+    func subscribedCustom(title: String? = nil, titleColor: UIColor, radius: CGFloat? = nil, alpha: CGFloat? = nil) {
+        self.setTitle(title?.uppercased() ?? "SUSCRIPTO", for: [])
         self.setTitleColor(titleColor, for: [])
         self.backgroundColor = .white
+        if let radius = radius {
+            self.layer.cornerRadius = radius
+        } else {
+            self.roundHalf()
+        }
+        self.alpha = alpha ?? 1
     }
     
-    func unsubscribedCustom(title: String) {
+    func unsubscribedCustom(title: String? = nil, radius: CGFloat? = nil, alpha: CGFloat? = nil) {
         self.border(width: 2, color: .white)
-        self.roundHalf()
-        self.setTitle(title.uppercased(), for: [])
+        self.setTitle(title?.uppercased() ?? "SUSCRIBIRME", for: [])
         self.setTitleColor(.white, for: [])
         self.backgroundColor = .clear
+        if let radius = radius {
+            self.layer.cornerRadius = radius
+        } else {
+            self.roundHalf()
+        }
+        self.alpha = alpha ?? 1
     }
-    
-    func addedCustom(title: String, titleColor: UIColor) {
-        self.radius(3)
-        self.setTitle(title.uppercased(), for: [])
-        self.setTitleColor(titleColor, for: [])
-        self.backgroundColor = .white
-        self.alpha = 0.30
-    }
-    
-    func noAddedCustom(title: String) {
-        self.border(width: 2, color: .white)
-        self.radius(3)
-        self.setTitle(title.uppercased(), for: [])
-        self.setTitleColor(.white, for: [])
-        self.backgroundColor = .clear
-        self.alpha = 0.30
-    }
-    
-    
-    
-    
     
 }

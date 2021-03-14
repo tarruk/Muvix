@@ -58,6 +58,7 @@ class MovieDetailViewController: BaseViewController {
         super.viewDidAppear(animated)
         initialImageViewHeight = movieImageHeight.constant
     }
+    
    
     func navigationBarSetup() {
         let leftBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back_icon"), style: .plain, target: self, action: #selector(popViewController))
@@ -80,7 +81,7 @@ class MovieDetailViewController: BaseViewController {
                     self.backgroundImage.getImage(from: imageURL)
                     self.movieImage.getImage(from: imageURL)
                     self.colorView.backgroundColor = self.movieImage.image?.averageColor
-                    self.movieImage.radius(3)
+                    self.movieImage.radius(6)
                 }).disposed(by: disposeBag)
       
         viewModel.movieTitle.distinctUntilChanged()
@@ -131,7 +132,7 @@ class MovieDetailViewController: BaseViewController {
             .subscribe(
                 onNext: { [weak self] subscription in
                     guard let self = self else {return}
-                    subscription ? self.subscriptionButton.subscribedCustom(title: "subscripto", titleColor: self.colorView.backgroundColor ?? .black) : self.subscriptionButton.unsubscribedCustom(title: "subscribirme")
+                    subscription ? self.subscriptionButton.subscribedCustom(titleColor: self.colorView.backgroundColor ?? .black, alpha: 0.60) : self.subscriptionButton.unsubscribedCustom()
                 }).disposed(by: disposeBag)
         
     }
@@ -173,7 +174,7 @@ extension MovieDetailViewController: UIScrollViewDelegate {
             if movieImageHeight.constant <= 140 {
                 UIView.animate(withDuration: 1) {
                     self.movieImage.alpha = 0
-                    self.imageStackContainerTop.constant = -70
+                    self.imageStackContainerTop.constant = -60
                 
                     
                 }

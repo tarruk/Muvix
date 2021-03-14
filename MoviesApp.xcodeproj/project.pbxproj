@@ -54,6 +54,7 @@
 		F5CF275D25FE5C7100E22DB0 /* UICollectionView + convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF275C25FE5C7100E22DB0 /* UICollectionView + convenience.swift */; };
 		F5CF276225FE5FFD00E22DB0 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF276025FE5FFD00E22DB0 /* MovieTableViewCell.swift */; };
 		F5CF276325FE5FFD00E22DB0 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CF276125FE5FFD00E22DB0 /* MovieTableViewCell.xib */; };
+		F5CF278625FEB0FE00E22DB0 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF278525FEB0FE00E22DB0 /* NotificationNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		F5CF275C25FE5C7100E22DB0 /* UICollectionView + convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + convenience.swift"; sourceTree = "<group>"; };
 		F5CF276025FE5FFD00E22DB0 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		F5CF276125FE5FFD00E22DB0 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
+		F5CF278525FEB0FE00E22DB0 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 				F53EEB3B25FD5AD500B98E15 /* UINavigationController + convenience.swift */,
 				F53EEB4525FD748900B98E15 /* UIButton + convenience.swift */,
 				F5CF275C25FE5C7100E22DB0 /* UICollectionView + convenience.swift */,
+				F5CF278525FEB0FE00E22DB0 /* NotificationNames.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				F53EEAC525FCE47F00B98E15 /* Movie.swift in Sources */,
 				F53EEB3725FD597700B98E15 /* MovieDetailViewController.swift in Sources */,
 				F53EEAC925FCE4B000B98E15 /* MoviesPack.swift in Sources */,
+				F5CF278625FEB0FE00E22DB0 /* NotificationNames.swift in Sources */,
 				F5CF275925FE594F00E22DB0 /* MovieFinderViewController.swift in Sources */,
 				F53EEAB125FCDB3D00B98E15 /* Network.swift in Sources */,
 				F520D0FD25FC206800050089 /* BaseNavigationController.swift in Sources */,

@@ -33,5 +33,13 @@ extension UITableView {
         return self.dequeueReusableCell(withIdentifier: String(describing: cell.self))
     }
     
+    func scrollDown(in section: Int) {
+        let numberOfSections = self.numberOfSections
+        let numberOfRows = self.numberOfRows(inSection: numberOfSections - 1)
+
+        let indexPath = NSIndexPath(row: numberOfRows, section: section)
+        self.scrollToRow(at: indexPath as IndexPath,
+                                          at: UITableView.ScrollPosition.middle, animated: true)
+    }
     
 }

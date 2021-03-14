@@ -48,6 +48,13 @@ class MovieFinderViewController: BaseViewController {
         )
         
         searchBarListener()
+        notificationsListener()
+    }
+    
+    func notificationsListener() {
+        NotificationCenter.default.addObserver(forName: .updateSubscribedMovies, object: nil, queue: nil) { (_) in
+            self.tableView.reloadData()
+        }
     }
     
     func configureViews() {
@@ -117,18 +124,10 @@ extension MovieFinderViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movieCell = tableView.createCell(MovieTableViewCell.self, and: indexPath) as! MovieTableViewCell
-        movieCell.configureCell(movie: self.filteredMovies[indexPath.row], delegate: self)
+        movieCell.configureCell(movie: self.filteredMovies[indexPath.row])
         return movieCell
     }
 
     
 }
 
-extension MovieFinderViewController: MovieTableViewCellDelegate {
-    
-    func addButtonPressed(at cell: UITableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
-        self.filteredMovies[indexPath.row]._added.toggle()
-        tableView.reloadData()
-    }
-}

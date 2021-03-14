@@ -7,22 +7,17 @@
 
 import UIKit
 
-
-protocol MovieTableViewCellDelegate: class {
-    func addButtonPressed(at cell: UITableViewCell)
-}
-
 class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var movieGenreLabel: UILabel!
     @IBOutlet weak var movieImage: UIImageView!
-    @IBOutlet weak var addMovieButton: UIButton!
+    @IBOutlet weak var subscribeButton: UIButton!
     
+
+    var movie: Movie?
     
-    
-    weak var delegate: MovieTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,9 +30,8 @@ class MovieTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(movie: Movie, delegate: MovieTableViewCellDelegate) {
-        self.delegate = delegate
-        
+    func configureCell(movie: Movie) {
+        self.movie = movie
         self.lineView.backgroundColor = Colors.lineGray
         
         if let name = movie.orgTitle {
@@ -54,7 +48,7 @@ class MovieTableViewCell: UITableViewCell {
             )
         }
         
-        movie._added ? addMovieButton.addedCustom(title: "Agregado", titleColor: Colors.backgroundBlack) : addMovieButton.noAddedCustom(title: "agregar")
+        movie._subscribed ? subscribeButton.subscribedCustom(titleColor: Colors.backgroundBlack, radius: 3, alpha: 0.30) : subscribeButton.unsubscribedCustom(radius: 3, alpha: 0.30)
         
         if let image = movie._imageURL {
             self.movieImage.getImage(from: image)
@@ -78,7 +72,8 @@ class MovieTableViewCell: UITableViewCell {
     
     
     @IBAction func addMovie(_ sender: Any) {
-        delegate?.addButtonPressed(at: self)
+        self.movie?._subscribed.toggle()
+        NotificationCenter.default.post(name: .updateSubscribedMovies, object: nil)
         
     }
     
