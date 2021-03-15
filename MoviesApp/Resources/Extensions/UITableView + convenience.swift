@@ -10,6 +10,12 @@ import UIKit
 
 extension UITableView {
 
+    func reload() {
+        DispatchQueue.main.async {
+            self.reloadData()
+        }
+    }
+    
     func setup(
         delegate: UITableViewDelegate,
         dataSource: UITableViewDataSource,
@@ -22,7 +28,7 @@ extension UITableView {
             register(UINib(nibName: String(describing: cell.self), bundle: nil), forCellReuseIdentifier: String(describing: cell.self))
         }
         
-        self.reloadData()
+        self.reload()
     }
     
     func createCell(_ cell: UITableViewCell.Type,and indexPath: IndexPath) -> UITableViewCell {

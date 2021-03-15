@@ -21,7 +21,7 @@ class PreviewHeaderTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configHeader(with title: String) {
+    func configureHeader(with title: String) {
         self.titleLabel.configure(
             text: title,
             color: .white,

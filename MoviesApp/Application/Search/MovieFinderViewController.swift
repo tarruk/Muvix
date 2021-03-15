@@ -13,7 +13,7 @@ class MovieFinderViewController: BaseViewController {
     
     var movies: [Movie] = [] {
         didSet {
-            self.tableView.reloadData()
+            self.tableView.reload()
         }
     }
     var keyword: String?
@@ -53,7 +53,7 @@ class MovieFinderViewController: BaseViewController {
     
     func notificationsListener() {
         NotificationCenter.default.addObserver(forName: .updateSubscribedMovies, object: nil, queue: nil) { (_) in
-            self.tableView.reloadData()
+            self.tableView.reload()
         }
     }
     
@@ -98,7 +98,7 @@ class MovieFinderViewController: BaseViewController {
                     } else {
                         self?.hideCleanerButton()
                     }
-                    self?.tableView.reloadData()
+                    self?.tableView.reload()
                 }).disposed(by: disposeBag)
     }
 
@@ -107,7 +107,7 @@ class MovieFinderViewController: BaseViewController {
         self.searchBar.text = nil
         self.keyword = nil
         self.hideCleanerButton()
-        self.tableView.reloadData()
+        self.tableView.reload()
     }
     
     @IBAction func cancelSearch(_ sender: Any) {

@@ -30,7 +30,7 @@ class PreviewTableViewCell: UITableViewCell {
         
     }
     
-    func configureCategory(movie: Movie) {
+    func configureCell(with movie: Movie) {
         
         if let name = movie.orgTitle {
             movieNameLabel.configure(

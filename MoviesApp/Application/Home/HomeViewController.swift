@@ -12,15 +12,21 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var scrollTopButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel : HomeViewModel?
     
+    let viewModel: HomeViewModel = HomeViewModel()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViews()
+        navigationBarSetup()
+        setDataBridge()
+        notificationsListener()
+    }
+    
+    func configureViews() {
         scrollTopButton.isHidden = true
         view.backgroundColor = Colors.backgroundBlack
-        navigationBarSetup()
         tableView.backgroundColor = Colors.backgroundBlack
         tableView.setup(
             delegate: self,
@@ -31,13 +37,7 @@ class HomeViewController: BaseViewController {
                 SubscribedMoviesTableViewCell.self
             ]
         )
-        setDataBridge()
-        notificationsListener()
-        
     }
-    
-    
-  
     
     func navigationBarSetup() {
         let leftBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "search_icon"), style: .plain, target: self, action: #selector(presentSearchView))
@@ -45,37 +45,31 @@ class HomeViewController: BaseViewController {
         configNav(leftButton: leftBarButton, title: "TV Show Reminder")
     }
     
-    
     @objc func presentSearchView() {
-        if let movies = viewModel?.movies.value {
-            let movieFinder = BaseNavigationController(rootViewController: MovieFinderViewController(movies: movies))
-            self.present(movieFinder, animated: true)
-        }
-        
+        let movieFinderVc = BaseNavigationController(rootViewController: MovieFinderViewController(movies: viewModel.getAllMovies()))
+        self.present(movieFinderVc, animated: true)
     }
+    
     func setDataBridge() {
-        viewModel = HomeViewModel()
-        
-        viewModel?.movies
+        viewModel.movies
             .subscribe(
                 onNext: { [weak self] _ in
-                    self?.tableView.reloadData()
+                    self?.tableView.reload()
                     
                 }).disposed(by: disposeBag)
     }
     
     func notificationsListener() {
         NotificationCenter.default.addObserver(forName: .updateSubscribedMovies, object: nil, queue: nil) { (_) in
-            self.tableView.reloadData()
+            self.tableView.reload()
         }
     }
     
     
     
     @IBAction func scrollToTop(_ sender: Any) {
-        self.tableView.isScrollEnabled = false
-        self.tableView.contentOffset.y = 0
-        self.tableView.isScrollEnabled = true
+       self.tableView.contentOffset.y = 0
+       
     }
     
     
@@ -85,9 +79,7 @@ class HomeViewController: BaseViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    
         if scrollView.contentOffset.y > 0 {
             UIView.animate(withDuration: 1) {
                 self.scrollTopButton.isHidden = false
@@ -106,18 +98,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let scrollBottomOffset = scrollOffset + scrollView.frame.height
 
             if scrollBottomOffset * 1.3 > contentSize {
-                    viewModel?.getNewPage()
+                    viewModel.getNewPage()
             }
         }
     
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel?.sections.count ?? 0
+        return viewModel.sections.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let previewMovieHeader = tableView.createHeader(PreviewHeaderTableViewCell.self) as! PreviewHeaderTableViewCell
-        previewMovieHeader.configHeader(with: viewModel?.sections[section].name() ?? "")
+        previewMovieHeader.configureHeader(with: viewModel.sections[section].name())
         return previewMovieHeader.contentView
     }
     
@@ -125,62 +116,54 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 40
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch viewModel?.sections[section] {
+        switch viewModel.sections[section] {
         case .AllMovies:
-            return viewModel?.movies.value.count ?? 0
-        default:
+            return viewModel.movies.value.count
+        case .Subscripted:
             return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     
-        switch viewModel?.sections[indexPath.section] {
+        let section = viewModel.sections[indexPath.section]
+        switch section {
         case .AllMovies:
             let previewMovieCell = tableView.createCell(PreviewTableViewCell.self, and: indexPath) as! PreviewTableViewCell
-            if let movie = viewModel?.movies.value[indexPath.row] {
-                previewMovieCell.configureCategory(movie: movie)
-            }
+            let movie = viewModel.getMovie(at: indexPath.row)
+            previewMovieCell.configureCell(with: movie)
             return previewMovieCell
-            
         case .Subscripted:
             let subcribedMoviesCell = tableView.createCell(SubscribedMoviesTableViewCell.self, and: indexPath) as! SubscribedMoviesTableViewCell
-            if let subscribedMovies = viewModel?.getSubscribedMovies() {
-                subcribedMoviesCell.configureCell(with: subscribedMovies, delegate: self)
-            }
-            
+            let subscribedMovies = viewModel.getSubscribedMovies()
+            subcribedMoviesCell.configureCell(with: subscribedMovies, delegate: self)
             return subcribedMoviesCell
-        case .none: return UITableViewCell()
         }
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard viewModel?.sections[indexPath.section] == .AllMovies else {
+        guard viewModel.sections[indexPath.section] == .AllMovies else {
             return
         }
-        guard let viewModel = viewModel?.getMovieDetailViewModel(index: indexPath.row) else {
-            return
-        }
-        let vc = MovieDetailViewController(viewModel: viewModel, delegate: self)
+        let movieDetailViewModel = viewModel.getMovieDetailViewModel(index: indexPath.row)
+        let vc = MovieDetailViewController(viewModel: movieDetailViewModel, delegate: self)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
 }
 
+//MARK: - MovieDetailDelegate-
 extension HomeViewController: MovieDetailViewControllerDelegate {
     func subscribeButtonPressed() {
-        tableView.reloadData()
+        tableView.reload()
     }
 }
-
+//MARK: - Subscribed Movies Cell Delegate-
 extension HomeViewController: SubscribedMoviesTableViewCellDelegate {
     func openMovieDetail(with index: Int) {
-        guard let viewModel = viewModel?.getMovieDetailViewModel(index: index, subscribed: true) else {return}
-        let vc = MovieDetailViewController(viewModel: viewModel, delegate: self)
+        let movieDetailViewModel = viewModel.getMovieDetailViewModel(index: index, subscribed: true)
+        let vc = MovieDetailViewController(viewModel: movieDetailViewModel, delegate: self)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

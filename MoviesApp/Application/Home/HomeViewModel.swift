@@ -111,6 +111,14 @@ class HomeViewModel {
         return movies.value.filter({$0._subscribed})
     }
     
+    func getMovie(at index: Int) -> Movie {
+        return movies.value[index]
+    }
+    
+    func getAllMovies() -> [Movie] {
+        return movies.value
+    }
+    
     func getMovieDetailViewModel(index: Int, subscribed: Bool? = nil) -> MovieDetailViewModel {
         if let subscribed = subscribed, subscribed == true {
             return MovieDetailViewModel(movie: getSubscribedMovies()[index])
