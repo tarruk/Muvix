@@ -25,6 +25,10 @@ class MovieDetailViewModel {
         setData()
     }
     
+    deinit {
+        debugPrint("Closing MovieDetailViewModel")
+    }
+    
     func setData() {
         movieImageUrl.accept(movie._imageURL)
         movieTitle.accept(movie.orgTitle?.capitalized)

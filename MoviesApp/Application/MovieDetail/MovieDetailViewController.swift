@@ -34,11 +34,15 @@ class MovieDetailViewController: BaseViewController {
     var initialImageViewHeight: CGFloat?
     weak var delegate: MovieDetailViewControllerDelegate?
     
-    init(viewModel: MovieDetailViewModel, delegate: MovieDetailViewControllerDelegate) {
+    init(movie: Movie, delegate: MovieDetailViewControllerDelegate) {
         self.delegate   = delegate
-        self.viewModel  = viewModel
+        self.viewModel  = MovieDetailViewModel(movie: movie)
         super.init()
         
+    }
+    
+    deinit {
+        debugPrint("Closing MovieDetail")
     }
     
     required init?(coder: NSCoder) {

@@ -24,6 +24,7 @@ class HomeViewController: BaseViewController {
         notificationsListener()
     }
     
+    
     func configureViews() {
         scrollTopButton.isHidden = true
         view.backgroundColor = Colors.backgroundBlack
@@ -146,8 +147,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard viewModel.sections[indexPath.section] == .AllMovies else {
             return
         }
-        let movieDetailViewModel = viewModel.getMovieDetailViewModel(index: indexPath.row)
-        let vc = MovieDetailViewController(viewModel: movieDetailViewModel, delegate: self)
+
+        let vc = MovieDetailViewController(movie: viewModel.getMovie(at: indexPath.row), delegate: self)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -162,8 +163,8 @@ extension HomeViewController: MovieDetailViewControllerDelegate {
 //MARK: - Subscribed Movies Cell Delegate-
 extension HomeViewController: SubscribedMoviesTableViewCellDelegate {
     func openMovieDetail(with index: Int) {
-        let movieDetailViewModel = viewModel.getMovieDetailViewModel(index: index, subscribed: true)
-        let vc = MovieDetailViewController(viewModel: movieDetailViewModel, delegate: self)
+        let subscribedMovie = viewModel.getMovie(at: index, subscribed: true)
+        let vc = MovieDetailViewController(movie: subscribedMovie, delegate: self)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -9,44 +9,32 @@ import UIKit
 import RxSwift
 import RxCocoa
 class MovieFinderViewController: BaseViewController {
-
-    
-    var movies: [Movie] = [] {
-        didSet {
-            self.tableView.reload()
-        }
-    }
-    var keyword: String?
-    var filteredMovies: [Movie] {
-        return movies.filter {
-            ($0.orgTitle?.range(of: keyword ?? "", options: .caseInsensitive) != nil || keyword == nil || keyword == "")
-        }
-    }
     
     @IBOutlet weak var searchBarContainer: UIStackView!
     @IBOutlet weak var cleanSearchBarButton: UIButton!
     @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    var viewModel: MovieFinderViewModel
     
     init(movies: [Movie]) {
+        viewModel = MovieFinderViewModel(movies: movies)
         super.init()
-        self.movies = movies
+        
     }
     
+    deinit {
+        debugPrint("Closing MovieFinder")
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
-        tableView.setup(
-            delegate: self,
-            dataSource: self,
-            cells: [MovieTableViewCell.self]
-        )
-        
         searchBarListener()
         notificationsListener()
     }
@@ -64,6 +52,11 @@ class MovieFinderViewController: BaseViewController {
         searchBarContainer.backgroundColor = Colors.searchBarGray
         view.backgroundColor = Colors.backgroundBlack
         tableView.backgroundColor = Colors.backgroundBlack
+        tableView.setup(
+            delegate: self,
+            dataSource: self,
+            cells: [MovieTableViewCell.self]
+        )
     }
     
     
@@ -86,28 +79,32 @@ class MovieFinderViewController: BaseViewController {
         
     }
     
+    func bindKeyword(with text: String) {
+        viewModel.keyword = text
+        if text != "" {
+            showCleanerButton()
+        } else {
+            hideCleanerButton()
+        }
+    }
+    
     func searchBarListener() {
         self.searchBar
             .rx
             .text.distinctUntilChanged()
             .subscribe(
                 onNext: { [weak self] text in
-                    self?.keyword = text
-                    if let text = text, text != "" {
-                        self?.showCleanerButton()
-                    } else {
-                        self?.hideCleanerButton()
-                    }
+                    guard let text = text else { return }
+                    self?.bindKeyword(with: text)
                     self?.tableView.reload()
                 }).disposed(by: disposeBag)
     }
 
     
     @IBAction func cleanSearchBar(_ sender: Any) {
-        self.searchBar.text = nil
-        self.keyword = nil
-        self.hideCleanerButton()
-        self.tableView.reload()
+        searchBar.text = nil
+        hideCleanerButton()
+        tableView.reload()
     }
     
     @IBAction func cancelSearch(_ sender: Any) {
@@ -119,15 +116,15 @@ extension MovieFinderViewController: UITableViewDataSource, UITableViewDelegate 
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.filteredMovies.count
+        return viewModel.filteredMovies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movieCell = tableView.createCell(MovieTableViewCell.self, and: indexPath) as! MovieTableViewCell
-        movieCell.configureCell(movie: self.filteredMovies[indexPath.row])
+        movieCell.configureCell(movie: viewModel.filteredMovies[indexPath.row])
         return movieCell
     }
-
+ 
     
 }
 

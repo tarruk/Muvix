@@ -14,5 +14,23 @@ import RxCocoa
 
 class MovieFinderViewModel {
     
+    var movies: [Movie] = []
+    var keyword: String?
+    var filteredMovies: [Movie] {
+        return movies.filter {
+            ($0.orgTitle?.range(of: keyword ?? "", options: .caseInsensitive) != nil || keyword == nil || keyword == "")
+        }
+    }
     
+    init(movies: [Movie]) {
+        self.movies = movies
+    }
+    
+    func resetFilter() {
+        self.keyword = nil
+    }
+    
+    func getMovie(at index: Int) -> Movie {
+        return filteredMovies[index]
+    }
 }
