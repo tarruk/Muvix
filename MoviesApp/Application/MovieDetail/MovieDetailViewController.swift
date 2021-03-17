@@ -175,12 +175,9 @@ extension MovieDetailViewController: UIScrollViewDelegate {
             imageStackContainerTop.constant = -normalizedContentOffset * 0.3
             movieImageHeight.constant = initialImageViewHeight - normalizedContentOffset
             
-            if movieImageHeight.constant <= 140 {
+            if movieImageHeight.constant <= 10 {
                 UIView.animate(withDuration: 1) {
                     self.movieImage.alpha = 0
-                    self.imageStackContainerTop.constant = -60
-                
-                    
                 }
             } else {
                 UIView.animate(withDuration: 1) {
