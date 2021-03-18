@@ -30,9 +30,9 @@ class PreviewTableViewCell: UITableViewCell {
         
     }
     
-    func configureCell(with movie: Movie) {
+    func configureCell(with movie: MovieDB) {
         
-        if let name = movie.orgTitle {
+        if let name = movie.title {
             movieNameLabel.configure(
                 text: name,
                 color: .white,
@@ -49,7 +49,7 @@ class PreviewTableViewCell: UITableViewCell {
         
         
         
-        if let image = movie._imageURL {
+        if let image = movie.posterPath {
             self.movieImage.getImage(from: image)
             self.movieImage.contentMode = .scaleAspectFill
         } else {
@@ -59,7 +59,7 @@ class PreviewTableViewCell: UITableViewCell {
         }
         movieImage.radius(3)
         
-        if let genre = movie._selectedGenre?.name {
+        if let genre = movie.selectedGenre {
             categoryLabel.configure(
                 text: genre.uppercased(),
                 color: .white,
@@ -76,3 +76,4 @@ class PreviewTableViewCell: UITableViewCell {
     }
     
 }
+

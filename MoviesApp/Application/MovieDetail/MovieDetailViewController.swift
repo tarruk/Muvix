@@ -7,13 +7,10 @@
 
 import UIKit
 
-protocol MovieDetailViewControllerDelegate: class {
-    func subscribeButtonPressed()
-}
-
 class MovieDetailViewController: BaseViewController {
 
 
+    @IBOutlet weak var buttonTopLimit: NSLayoutConstraint!
     @IBOutlet weak var imageStackContainerTop: NSLayoutConstraint!
     @IBOutlet weak var imageStackContainer: UIView!
     @IBOutlet weak var subscriptionButtonTop: NSLayoutConstraint!
@@ -32,10 +29,10 @@ class MovieDetailViewController: BaseViewController {
     
     var viewModel: MovieDetailViewModel
     var initialImageViewHeight: CGFloat?
-    weak var delegate: MovieDetailViewControllerDelegate?
+  
     
-    init(movie: Movie, delegate: MovieDetailViewControllerDelegate) {
-        self.delegate   = delegate
+    init(movie: MovieDB) {
+    
         self.viewModel  = MovieDetailViewModel(movie: movie)
         super.init()
         
@@ -56,12 +53,21 @@ class MovieDetailViewController: BaseViewController {
         navigationBarSetup()
         observerSetup()
         configureScrollView()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         initialImageViewHeight = movieImageHeight.constant
     }
+    
+    
     
    
     func navigationBarSetup() {
@@ -143,6 +149,7 @@ class MovieDetailViewController: BaseViewController {
     
     func configureScrollView(){
         scrollView.delegate = self
+        
         scrollView.contentInset = UIEdgeInsets(
             top: self.imageStackContainer.frame.height,
             left: 0,
@@ -153,8 +160,6 @@ class MovieDetailViewController: BaseViewController {
     
     @IBAction func subscribe(_ sender: Any) {
         viewModel.subscribeButtonPressed()
-        delegate?.subscribeButtonPressed()
-        
     }
     
 }
@@ -164,6 +169,7 @@ class MovieDetailViewController: BaseViewController {
 extension MovieDetailViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.buttonTopLimit.constant = self.imageStackContainer.frame.height
         guard let initialImageViewHeight = self.initialImageViewHeight else {
             return
         }

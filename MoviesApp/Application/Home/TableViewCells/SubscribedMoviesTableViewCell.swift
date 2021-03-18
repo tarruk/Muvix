@@ -16,7 +16,7 @@ class SubscribedMoviesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var subscribedMovies: [Movie] = [] {
+    var subscribedMovies: [MovieDB] = [] {
         didSet {
             self.collectionView.reloadData()
         }
@@ -36,7 +36,7 @@ class SubscribedMoviesTableViewCell: UITableViewCell {
     }
     
     
-    func configureCell(with movies: [Movie], delegate: SubscribedMoviesTableViewCellDelegate) {
+    func configureCell(with movies: [MovieDB], delegate: SubscribedMoviesTableViewCellDelegate) {
         self.delegate = delegate
         collectionView
             .setup(

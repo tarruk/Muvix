@@ -17,7 +17,7 @@ class MovieFinderViewController: BaseViewController {
     
     var viewModel: MovieFinderViewModel
     
-    init(movies: [Movie]) {
+    init(movies: [MovieDB]) {
         viewModel = MovieFinderViewModel(movies: movies)
         super.init()
         
@@ -47,7 +47,7 @@ class MovieFinderViewController: BaseViewController {
     
     func configureViews() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        cleanSearchBarButton.setImage(#imageLiteral(resourceName: "close_icon").tint(with: Colors.cleanFilterBtn), for: [])  
+        cleanSearchBarButton.setImage(#imageLiteral(resourceName: "close_icon").tint(with: Colors.cleanFilterBtn), for: [])
         searchBarContainer.radius(3)
         searchBarContainer.backgroundColor = Colors.searchBarGray
         view.backgroundColor = Colors.backgroundBlack
@@ -103,6 +103,7 @@ class MovieFinderViewController: BaseViewController {
     
     @IBAction func cleanSearchBar(_ sender: Any) {
         searchBar.text = nil
+        viewModel.resetFilter()
         hideCleanerButton()
         tableView.reload()
     }
@@ -121,8 +122,14 @@ extension MovieFinderViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movieCell = tableView.createCell(MovieTableViewCell.self, and: indexPath) as! MovieTableViewCell
-        movieCell.configureCell(movie: viewModel.filteredMovies[indexPath.row])
+        movieCell.configureCell(movie: viewModel.filteredMovies[indexPath.row]) { [weak self] in
+            self?.viewModel.subscribeButtonPressed()
+        }
         return movieCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(MovieDetailViewController(movie: viewModel.filteredMovies[indexPath.row]), animated: true)
     }
  
     

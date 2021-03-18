@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lineView: UIView!
@@ -16,8 +18,8 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var subscribeButton: UIButton!
     
 
-    var movie: Movie?
-    
+    var movie: MovieDB?
+    var onSubscribe: (()->Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,11 +32,12 @@ class MovieTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(movie: Movie) {
+    func configureCell(movie: MovieDB, onSubscribe: @escaping (()->Void)) {
         self.movie = movie
+        self.onSubscribe = onSubscribe
         self.lineView.backgroundColor = Colors.lineGray
         
-        if let name = movie.orgTitle {
+        if let name = movie.title {
             movieTitleLabel.configure(
                 text: name,
                 color: .white,
@@ -48,9 +51,9 @@ class MovieTableViewCell: UITableViewCell {
             )
         }
         
-        movie._subscribed ? subscribeButton.subscribedCustom(titleColor: Colors.backgroundBlack, radius: 3, alpha: 0.30) : subscribeButton.unsubscribedCustom(radius: 3, alpha: 0.30)
+        movie.subscribed ? subscribeButton.subscribedCustom(titleColor: Colors.backgroundBlack, radius: 3, alpha: 0.30) : subscribeButton.unsubscribedCustom(radius: 3, alpha: 0.30)
         
-        if let image = movie._imageURL {
+        if let image = movie.posterPath{
             self.movieImage.getImage(from: image)
             self.movieImage.contentMode = .scaleAspectFill
         } else {
@@ -60,7 +63,7 @@ class MovieTableViewCell: UITableViewCell {
         }
         movieImage.radius(3)
         
-        if let genre = movie._selectedGenre?.name {
+        if let genre = movie.selectedGenre {
             movieGenreLabel.configure(
                 text: genre.uppercased(),
                 color: .white,
@@ -72,9 +75,8 @@ class MovieTableViewCell: UITableViewCell {
     
     
     @IBAction func addMovie(_ sender: Any) {
-        self.movie?._subscribed.toggle()
-        NotificationCenter.default.post(name: .updateSubscribedMovies, object: nil)
-        
+        self.movie?.subscribed.toggle()
+        self.onSubscribe?()
     }
     
     

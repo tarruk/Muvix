@@ -14,15 +14,16 @@ import RxCocoa
 
 class MovieFinderViewModel {
     
-    var movies: [Movie] = []
+    var movies: [MovieDB] = []
     var keyword: String?
-    var filteredMovies: [Movie] {
+    
+    var filteredMovies: [MovieDB] {
         return movies.filter {
-            ($0.orgTitle?.range(of: keyword ?? "", options: .caseInsensitive) != nil || keyword == nil || keyword == "")
+            ($0.title?.range(of: keyword ?? "", options: .caseInsensitive) != nil || keyword == nil || keyword == "")
         }
     }
     
-    init(movies: [Movie]) {
+    init(movies: [MovieDB]) {
         self.movies = movies
     }
     
@@ -30,7 +31,11 @@ class MovieFinderViewModel {
         self.keyword = nil
     }
     
-    func getMovie(at index: Int) -> Movie {
+    func getMovie(at index: Int) -> MovieDB {
         return filteredMovies[index]
+    }
+    
+    func subscribeButtonPressed() {
+        PersistenceManager.shared.saveMovies()
     }
 }

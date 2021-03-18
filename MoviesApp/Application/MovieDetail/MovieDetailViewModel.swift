@@ -12,7 +12,7 @@ import RxSwift
 
 class MovieDetailViewModel {
     
-    var movie: Movie
+    var movie: MovieDB
     
     var movieImageUrl   : BehaviorRelay<String?> = .init(value: nil)
     var movieTitle      : BehaviorRelay<String?> = .init(value: nil)
@@ -20,7 +20,7 @@ class MovieDetailViewModel {
     var movieOverview   : BehaviorRelay<String?> = .init(value: nil)
     var movieSubscription: BehaviorRelay<Bool>   = .init(value: false)
     
-    init(movie: Movie) {
+    init(movie: MovieDB) {
         self.movie = movie
         setData()
     }
@@ -30,17 +30,17 @@ class MovieDetailViewModel {
     }
     
     func setData() {
-        movieImageUrl.accept(movie._imageURL)
-        movieTitle.accept(movie.orgTitle?.capitalized)
-        let releaseYear = movie.releaseDate?.components(separatedBy: "-").first
-        movieReleaseDate.accept(releaseYear)
-        movieOverview.accept(movie.description?.capitalized)
-        movieSubscription.accept(movie._subscribed)
+        movieImageUrl.accept(movie.posterPath)
+        movieTitle.accept(movie.title?.capitalized)
+        movieReleaseDate.accept(movie.year)
+        movieOverview.accept(movie.overview?.capitalized)
+        movieSubscription.accept(movie.subscribed)
     }
     
     func subscribeButtonPressed() {
-        self.movie._subscribed.toggle()
-        self.movieSubscription.accept(movie._subscribed)
+        self.movie.subscribed.toggle()
+        self.movieSubscription.accept(movie.subscribed)
+        PersistenceManager.shared.saveMovies()
     }
     
     

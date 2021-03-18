@@ -48,11 +48,12 @@ class HomeViewController: BaseViewController {
     
     @objc func presentSearchView() {
         let movieFinderVc = BaseNavigationController(rootViewController: MovieFinderViewController(movies: viewModel.getAllMovies()))
+        movieFinderVc.modalPresentationStyle = .fullScreen
         self.present(movieFinderVc, animated: true)
     }
     
     func setDataBridge() {
-        viewModel.movies
+        viewModel.moviesDB
             .subscribe(
                 onNext: { [weak self] _ in
                     self?.tableView.reload()
@@ -120,7 +121,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch viewModel.sections[section] {
         case .AllMovies:
-            return viewModel.movies.value.count
+            return viewModel.moviesDB.value.count
         case .Subscripted:
             return 1
         }
@@ -131,7 +132,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .AllMovies:
             let previewMovieCell = tableView.createCell(PreviewTableViewCell.self, and: indexPath) as! PreviewTableViewCell
-            let movie = viewModel.getMovie(at: indexPath.row)
+            let movie = viewModel.moviesDB.value[indexPath.row]
             previewMovieCell.configureCell(with: movie)
             return previewMovieCell
         case .Subscripted:
@@ -148,23 +149,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
 
-        let vc = MovieDetailViewController(movie: viewModel.getMovie(at: indexPath.row), delegate: self)
+        let vc = MovieDetailViewController(movie: viewModel.getMovie(at: indexPath.row))
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
 
-//MARK: - MovieDetailDelegate-
-extension HomeViewController: MovieDetailViewControllerDelegate {
-    func subscribeButtonPressed() {
-        tableView.reload()
-    }
-}
+
 //MARK: - Subscribed Movies Cell Delegate-
 extension HomeViewController: SubscribedMoviesTableViewCellDelegate {
     func openMovieDetail(with index: Int) {
         let subscribedMovie = viewModel.getMovie(at: index, subscribed: true)
-        let vc = MovieDetailViewController(movie: subscribedMovie, delegate: self)
+        let vc = MovieDetailViewController(movie: subscribedMovie)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

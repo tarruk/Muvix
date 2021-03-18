@@ -23,7 +23,6 @@
 		F520D13A25FC354C00050089 /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F520D13925FC354C00050089 /* RoundShadowView.swift */; };
 		F53EEAB125FCDB3D00B98E15 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEAB025FCDB3D00B98E15 /* Network.swift */; };
 		F53EEAB425FCDB9300B98E15 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEAB325FCDB9300B98E15 /* Request.swift */; };
-		F53EEAB825FCDEEF00B98E15 /* BaseViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEAB725FCDEEF00B98E15 /* BaseViewComponent.swift */; };
 		F53EEAC525FCE47F00B98E15 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEAC425FCE47F00B98E15 /* Movie.swift */; };
 		F53EEAC925FCE4B000B98E15 /* MoviesPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEAC825FCE4B000B98E15 /* MoviesPack.swift */; };
 		F53EEAD025FCE50800B98E15 /* MoviesEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEACF25FCE50800B98E15 /* MoviesEndpoints.swift */; };
@@ -49,6 +48,11 @@
 		F53EEB3C25FD5AD500B98E15 /* UINavigationController + convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEB3B25FD5AD500B98E15 /* UINavigationController + convenience.swift */; };
 		F53EEB4625FD748900B98E15 /* UIButton + convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53EEB4525FD748900B98E15 /* UIButton + convenience.swift */; };
 		F5BAB581260010C4007E1B8D /* MovieFinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BAB580260010C4007E1B8D /* MovieFinderViewModel.swift */; };
+		F5C9B8D72602A8220083CD7C /* UIViewController + convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9B8D62602A8220083CD7C /* UIViewController + convenience.swift */; };
+		F5C9B8DB2602A9180083CD7C /* MoviesDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5C9B8D92602A9180083CD7C /* MoviesDatabase.xcdatamodeld */; };
+		F5C9B8DF2602A98C0083CD7C /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9B8DE2602A98C0083CD7C /* PersistenceManager.swift */; };
+		F5C9B8E42602AADC0083CD7C /* MovieDB+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9B8E22602AADC0083CD7C /* MovieDB+CoreDataClass.swift */; };
+		F5C9B8E52602AADC0083CD7C /* MovieDB+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9B8E32602AADC0083CD7C /* MovieDB+CoreDataProperties.swift */; };
 		F5CF274D25FE39FF00E22DB0 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF274C25FE39FF00E22DB0 /* MovieDetailViewModel.swift */; };
 		F5CF275925FE594F00E22DB0 /* MovieFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CF275725FE594F00E22DB0 /* MovieFinderViewController.swift */; };
 		F5CF275A25FE594F00E22DB0 /* MovieFinderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5CF275825FE594F00E22DB0 /* MovieFinderViewController.xib */; };
@@ -79,7 +83,6 @@
 		F520D13925FC354C00050089 /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
 		F53EEAB025FCDB3D00B98E15 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F53EEAB325FCDB9300B98E15 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		F53EEAB725FCDEEF00B98E15 /* BaseViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewComponent.swift; sourceTree = "<group>"; };
 		F53EEAC425FCE47F00B98E15 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		F53EEAC825FCE4B000B98E15 /* MoviesPack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPack.swift; sourceTree = "<group>"; };
 		F53EEACF25FCE50800B98E15 /* MoviesEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesEndpoints.swift; sourceTree = "<group>"; };
@@ -105,6 +108,11 @@
 		F53EEB3B25FD5AD500B98E15 /* UINavigationController + convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + convenience.swift"; sourceTree = "<group>"; };
 		F53EEB4525FD748900B98E15 /* UIButton + convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + convenience.swift"; sourceTree = "<group>"; };
 		F5BAB580260010C4007E1B8D /* MovieFinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFinderViewModel.swift; sourceTree = "<group>"; };
+		F5C9B8D62602A8220083CD7C /* UIViewController + convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + convenience.swift"; sourceTree = "<group>"; };
+		F5C9B8DA2602A9180083CD7C /* MoviesDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoviesDatabase.xcdatamodel; sourceTree = "<group>"; };
+		F5C9B8DE2602A98C0083CD7C /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		F5C9B8E22602AADC0083CD7C /* MovieDB+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDB+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F5C9B8E32602AADC0083CD7C /* MovieDB+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDB+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F5CF274C25FE39FF00E22DB0 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		F5CF275725FE594F00E22DB0 /* MovieFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFinderViewController.swift; sourceTree = "<group>"; };
 		F5CF275825FE594F00E22DB0 /* MovieFinderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieFinderViewController.xib; sourceTree = "<group>"; };
@@ -164,6 +172,7 @@
 		F520D0D425FC1DB600050089 /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
+				F5C9B8DD2602A93A0083CD7C /* Persistence */,
 				F53EEAC125FCE43F00B98E15 /* Model */,
 				F53EEAA825FCDAB100B98E15 /* Networking */,
 				F520D0F725FC1FCB00050089 /* Base */,
@@ -172,6 +181,7 @@
 				F520D0D525FC1DB600050089 /* AppDelegate.swift */,
 				F520D0E025FC1DB900050089 /* LaunchScreen.storyboard */,
 				F520D0E325FC1DB900050089 /* Info.plist */,
+				F5C9B8D92602A9180083CD7C /* MoviesDatabase.xcdatamodeld */,
 			);
 			path = MoviesApp;
 			sourceTree = "<group>";
@@ -214,7 +224,6 @@
 			children = (
 				F520D0F825FC1FD600050089 /* BaseViewController.swift */,
 				F520D0FC25FC206800050089 /* BaseNavigationController.swift */,
-				F53EEAB725FCDEEF00B98E15 /* BaseViewComponent.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -240,6 +249,7 @@
 				F53EEB4525FD748900B98E15 /* UIButton + convenience.swift */,
 				F5CF275C25FE5C7100E22DB0 /* UICollectionView + convenience.swift */,
 				F5CF278525FEB0FE00E22DB0 /* NotificationNames.swift */,
+				F5C9B8D62602A8220083CD7C /* UIViewController + convenience.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -279,6 +289,7 @@
 		F53EEAC125FCE43F00B98E15 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F5C9B8E12602AAC20083CD7C /* MovieEntity */,
 				F53EEAC325FCE47600B98E15 /* Movie */,
 			);
 			path = Model;
@@ -331,6 +342,23 @@
 				F5CF274C25FE39FF00E22DB0 /* MovieDetailViewModel.swift */,
 			);
 			path = MovieDetail;
+			sourceTree = "<group>";
+		};
+		F5C9B8DD2602A93A0083CD7C /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				F5C9B8DE2602A98C0083CD7C /* PersistenceManager.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		F5C9B8E12602AAC20083CD7C /* MovieEntity */ = {
+			isa = PBXGroup;
+			children = (
+				F5C9B8E22602AADC0083CD7C /* MovieDB+CoreDataClass.swift */,
+				F5C9B8E32602AADC0083CD7C /* MovieDB+CoreDataProperties.swift */,
+			);
+			path = MovieEntity;
 			sourceTree = "<group>";
 		};
 		F5CF275625FE589B00E22DB0 /* Search */ = {
@@ -486,6 +514,7 @@
 				F53EEB3725FD597700B98E15 /* MovieDetailViewController.swift in Sources */,
 				F53EEAC925FCE4B000B98E15 /* MoviesPack.swift in Sources */,
 				F5CF278625FEB0FE00E22DB0 /* NotificationNames.swift in Sources */,
+				F5C9B8DF2602A98C0083CD7C /* PersistenceManager.swift in Sources */,
 				F5CF275925FE594F00E22DB0 /* MovieFinderViewController.swift in Sources */,
 				F53EEAB125FCDB3D00B98E15 /* Network.swift in Sources */,
 				F520D0FD25FC206800050089 /* BaseNavigationController.swift in Sources */,
@@ -493,12 +522,15 @@
 				F520D13425FC350300050089 /* PreviewTableViewCell.swift in Sources */,
 				F5CF275D25FE5C7100E22DB0 /* UICollectionView + convenience.swift in Sources */,
 				F53EEAB425FCDB9300B98E15 /* Request.swift in Sources */,
+				F5C9B8DB2602A9180083CD7C /* MoviesDatabase.xcdatamodeld in Sources */,
 				F520D10B25FC22A200050089 /* Colors.swift in Sources */,
 				F520D0D625FC1DB600050089 /* AppDelegate.swift in Sources */,
 				F53EEAD025FCE50800B98E15 /* MoviesEndpoints.swift in Sources */,
 				F520D13A25FC354C00050089 /* RoundShadowView.swift in Sources */,
+				F5C9B8E52602AADC0083CD7C /* MovieDB+CoreDataProperties.swift in Sources */,
 				F53EEAF225FD047900B98E15 /* UIImageView + convenience.swift in Sources */,
 				F520D0F325FC1FBE00050089 /* HomeViewController.swift in Sources */,
+				F5C9B8D72602A8220083CD7C /* UIViewController + convenience.swift in Sources */,
 				F53EEAEC25FCFF8900B98E15 /* UIView + convenience.swift in Sources */,
 				F53EEAEF25FD024E00B98E15 /* HomeViewModel.swift in Sources */,
 				F5BAB581260010C4007E1B8D /* MovieFinderViewModel.swift in Sources */,
@@ -506,10 +538,10 @@
 				F520D0F925FC1FD600050089 /* BaseViewController.swift in Sources */,
 				F53EEB3C25FD5AD500B98E15 /* UINavigationController + convenience.swift in Sources */,
 				F520D11025FC25A700050089 /* UIColor + convenience.swift in Sources */,
+				F5C9B8E42602AADC0083CD7C /* MovieDB+CoreDataClass.swift in Sources */,
 				F5CF274D25FE39FF00E22DB0 /* MovieDetailViewModel.swift in Sources */,
 				F53EEAD825FCF70C00B98E15 /* Fonts.swift in Sources */,
 				F53EEB2725FD50D600B98E15 /* SubscribedMoviesTableViewCell.swift in Sources */,
-				F53EEAB825FCDEEF00B98E15 /* BaseViewComponent.swift in Sources */,
 				F53EEB3225FD58D400B98E15 /* UIImage + convenience.swift in Sources */,
 				F53EEB2D25FD517B00B98E15 /* SubscribedMovieCollectionViewCell.swift in Sources */,
 			);
@@ -707,6 +739,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F5C9B8D92602A9180083CD7C /* MoviesDatabase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F5C9B8DA2602A9180083CD7C /* MoviesDatabase.xcdatamodel */,
+			);
+			currentVersion = F5C9B8DA2602A9180083CD7C /* MoviesDatabase.xcdatamodel */;
+			path = MoviesDatabase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F520D0CA25FC1DB600050089 /* Project object */;
 }

@@ -9,12 +9,17 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import CoreData
 
 class HomeViewModel {
     
     let disposeBag = DisposeBag()
  
+   //MARK: -Local Storage -
+    
    
+    var moviesDB: BehaviorRelay<[MovieDB]> = .init(value: [])
+    
     
     
     
@@ -49,18 +54,18 @@ class HomeViewModel {
             getNewPage()
         }
     }
-    var movies: BehaviorRelay<[Movie]> = .init(value: [])
+    
     var sections: [Sections] {
         return self.getSubscribedMovies().isEmpty ? [.AllMovies] : Sections.allCases
     }
    
     init() {
+//        MoviePersistenceManager.shared.reset()
         fetchGenres()
+        self.moviesDB.accept(PersistenceManager.shared.loadMovies())
+        
+        
     }
-    
-    
-    
-    
     private func fetchGenres() {
         Request
             .GetGenres()
@@ -92,14 +97,12 @@ class HomeViewModel {
                         self.listId = -1
                         return
                     }
-                    _moviesPack.movies.forEach({ movie in
-                        movie._selectedGenre = self.genres.filter({$0.id == movie.genreIds.first}).first
+                    _moviesPack.movies.forEach({ [weak self] movie in
+                        movie._selectedGenre = self?.genres.filter({$0.id == movie.genreIds.first}).first
                     })
                 
-                    let newMovies = (self.listId == 1) ? _moviesPack.movies : (self.movies.value + _moviesPack.movies)
-                    
-                    self.movies.accept(newMovies)
-                    
+                    self.updateMoviesDB(with: _moviesPack.movies)
+
                 },
                 
                 onError: { [weak self] error in
@@ -107,26 +110,41 @@ class HomeViewModel {
                 }).disposed(by: disposeBag)
     }
     
-    func getSubscribedMovies() -> [Movie] {
-        return movies.value.filter({$0._subscribed})
+    func getSubscribedMovies() -> [MovieDB] {
+        return moviesDB.value.filter({$0.subscribed})
     }
     
-    func getMovie(at index: Int, subscribed: Bool? = false) -> Movie {
+    func getMovie(at index: Int, subscribed: Bool? = false) -> MovieDB {
         if subscribed == true {
             return getSubscribedMovies()[index]
         } else {
-            return movies.value[index]
+            return moviesDB.value[index]
         }
         
     }
     
-    func getAllMovies() -> [Movie] {
-        return movies.value
+    func getAllMovies() -> [MovieDB] {
+        return moviesDB.value
     }
     
+    
+    func updateMoviesDB(with newMovies: [Movie]) {
+        newMovies.forEach { [weak self] movie in
+            guard let movieID = movie.id else { return }
+            if let _ = self?.moviesDB.value.filter({$0.id == movieID}).first {
+
+            } else {
+                PersistenceManager.shared.createMovieDB(with: movie)
+            }
+        }
+         
+        moviesDB.accept(PersistenceManager.shared.loadMovies())
+        
+    }
 
     
-   
-    
-    
+    func subscribeButtonPressed() {
+        PersistenceManager.shared.saveMovies()
+    }
+
 }

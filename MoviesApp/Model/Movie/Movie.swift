@@ -34,6 +34,17 @@ class Movie: Codable {
             return nil
         }
     }
+    var _year: String? {
+        if let releaseDate = self.releaseDate {
+            if let year = releaseDate.components(separatedBy: "-").first {
+                return year
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
                
 
     enum CodingKeys: String, CodingKey {
