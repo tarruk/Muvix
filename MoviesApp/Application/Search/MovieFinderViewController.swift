@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 class MovieFinderViewController: BaseViewController {
     
+  
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var searchBarContainer: UIStackView!
     @IBOutlet weak var cleanSearchBarButton: UIButton!
     @IBOutlet weak var searchBar: UITextField!
@@ -47,11 +49,15 @@ class MovieFinderViewController: BaseViewController {
     
     func configureViews() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        cleanSearchBarButton.setImage(#imageLiteral(resourceName: "close_icon").tint(with: Colors.cleanFilterBtn), for: [])
+        cleanSearchBarButton.setImage(#imageLiteral(resourceName: "close_icon").tint(with: .black), for: [])
         searchBarContainer.radius(3)
         searchBarContainer.backgroundColor = Colors.searchBarGray
         view.backgroundColor = Colors.backgroundBlack
         tableView.backgroundColor = Colors.backgroundBlack
+        cancelButton.titleLabel?.font = Fonts.SwanSea.regular.sized(15)
+        cancelButton.setTitleColor(.white, for: [])
+        cancelButton.backgroundColor = .black
+       
         tableView.setup(
             delegate: self,
             dataSource: self,

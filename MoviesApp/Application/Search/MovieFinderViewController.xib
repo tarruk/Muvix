@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieFinderViewController" customModule="MoviesApp" customModuleProvider="target">
             <connections>
+                <outlet property="cancelButton" destination="pLC-LI-W3o" id="vEz-HP-gvE"/>
                 <outlet property="cleanSearchBarButton" destination="Mbt-jz-cZr" id="Obn-d2-psq"/>
                 <outlet property="searchBar" destination="jf0-D5-100" id="xv6-IY-PZq"/>
                 <outlet property="searchBarContainer" destination="xbu-Jv-64a" id="KMA-ca-12C"/>

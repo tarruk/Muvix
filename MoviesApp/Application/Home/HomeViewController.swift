@@ -9,6 +9,8 @@ import UIKit
 
 class HomeViewController: BaseViewController {
 
+
+    @IBOutlet weak var scrollTopButtonContainer: UIView!
     @IBOutlet weak var activityLoader: UIActivityIndicatorView!
     @IBOutlet weak var scrollTopButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -29,7 +31,7 @@ class HomeViewController: BaseViewController {
     func configureViews() {
         self.activityLoader.isHidden = false
         self.activityLoader.startAnimating()
-        scrollTopButton.isHidden = true
+        scrollTopButtonContainer.isHidden = true
         view.backgroundColor = Colors.backgroundBlack
         tableView.backgroundColor = Colors.backgroundBlack
         tableView.setup(
@@ -86,14 +88,14 @@ class HomeViewController: BaseViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > 0 {
+        if scrollView.contentOffset.y > 500 {
             UIView.animate(withDuration: 1) {
-                self.scrollTopButton.isHidden = false
-                self.scrollTopButton.alpha = 1
+                self.scrollTopButtonContainer.isHidden = false
+                self.scrollTopButtonContainer.alpha = 1
             }
         } else {
-            UIView.animate(withDuration: 1) {
-                self.scrollTopButton.alpha = 0
+            UIView.animate(withDuration: 0.4) {
+                self.scrollTopButtonContainer.alpha = 0
             }
         }
     }
