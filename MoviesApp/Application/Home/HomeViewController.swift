@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: BaseViewController {
 
+    @IBOutlet weak var activityLoader: UIActivityIndicatorView!
     @IBOutlet weak var scrollTopButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,12 +21,14 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         configureViews()
         navigationBarSetup()
-        setDataBridge()
+        observerSetup()
         notificationsListener()
     }
     
     
     func configureViews() {
+        self.activityLoader.isHidden = false
+        self.activityLoader.startAnimating()
         scrollTopButton.isHidden = true
         view.backgroundColor = Colors.backgroundBlack
         tableView.backgroundColor = Colors.backgroundBlack
@@ -52,10 +55,11 @@ class HomeViewController: BaseViewController {
         self.present(movieFinderVc, animated: true)
     }
     
-    func setDataBridge() {
+    func observerSetup() {
         viewModel.moviesDB
             .subscribe(
-                onNext: { [weak self] _ in
+                onNext: { [weak self] movies in
+                    self?.activityLoader.isHidden = !movies.isEmpty
                     self?.tableView.reload()
                     
                 }).disposed(by: disposeBag)

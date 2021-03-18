@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MoviesApp" customModuleProvider="target">
             <connections>
+                <outlet property="activityLoader" destination="2NM-iD-8eb" id="kKA-qM-nhq"/>
                 <outlet property="scrollTopButton" destination="lAv-uw-ech" id="yX7-Jp-VL8"/>
                 <outlet property="tableView" destination="Yjb-AP-goJ" id="scC-53-MyP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -35,6 +36,10 @@
                         <action selector="scrollToTop:" destination="-1" eventType="touchUpInside" id="yDh-ds-sRs"/>
                     </connections>
                 </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2NM-iD-8eb">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,7 +47,9 @@
                 <constraint firstItem="Yjb-AP-goJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5uv-tB-4dx"/>
                 <constraint firstAttribute="bottom" secondItem="Yjb-AP-goJ" secondAttribute="bottom" id="JHB-m8-t2u"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Yjb-AP-goJ" secondAttribute="trailing" id="K2u-Gr-otN"/>
+                <constraint firstItem="2NM-iD-8eb" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="KGg-cU-fzl"/>
                 <constraint firstItem="lAv-uw-ech" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="MMh-bP-G2J"/>
+                <constraint firstItem="2NM-iD-8eb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SPH-Ik-DuL"/>
                 <constraint firstItem="Yjb-AP-goJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tSi-ci-1WD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="lAv-uw-ech" secondAttribute="bottom" constant="80" id="z2r-pD-CdF"/>
             </constraints>

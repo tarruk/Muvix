@@ -60,7 +60,6 @@ class HomeViewModel {
     }
    
     init() {
-//        MoviePersistenceManager.shared.reset()
         fetchGenres()
         self.moviesDB.accept(PersistenceManager.shared.loadMovies())
         

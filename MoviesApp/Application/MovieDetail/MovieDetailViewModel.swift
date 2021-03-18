@@ -40,7 +40,7 @@ class MovieDetailViewModel {
     func subscribeButtonPressed() {
         self.movie.subscribed.toggle()
         self.movieSubscription.accept(movie.subscribed)
-        PersistenceManager.shared.saveMovies()
+        PersistenceManager.shared.save()
     }
     
     

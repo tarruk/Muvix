@@ -36,6 +36,6 @@ class MovieFinderViewModel {
     }
     
     func subscribeButtonPressed() {
-        PersistenceManager.shared.saveMovies()
+        PersistenceManager.shared.save()
     }
 }

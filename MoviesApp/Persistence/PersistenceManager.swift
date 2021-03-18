@@ -20,17 +20,14 @@ class PersistenceManager {
         
     }
     
-    func reset() {
-        loadMovies().forEach { [weak self] (movie) in
-            self?.context.delete(movie)
-        }
+    func save() {
         saveMovies()
+        NotificationCenter.default.post(name: .updateSubscribedMovies, object: nil)
     }
     
     func saveMovies() {
        do {
            try context.save()
-        NotificationCenter.default.post(name: .updateSubscribedMovies, object: nil)
        } catch {
            print("Error saving context \(error)")
        }
