@@ -16,18 +16,12 @@ import RxSwift
 enum NetworkingError: Error {
     case invalidURL
     case emptyResponse
-    case userAlreadyTaken
-    case badCredentials
     case timeOutRequest
     case decodingError
     case undefined
     
     func getMessage() -> String {
         switch self {
-        case .userAlreadyTaken:
-            return "This user already exists."
-        case .badCredentials:
-            return "Authentication failed."
         case .timeOutRequest:
             return "Time out request"
         case .undefined:
@@ -84,10 +78,7 @@ extension NetworkProtocol {
     
     func getErrorType(from statusCode: Int) -> NetworkingError {
         switch statusCode {
-        case 409    : return .userAlreadyTaken
-        case 401    : return .badCredentials
-        case 422    : return .userAlreadyTaken
-        case -1009  : return .timeOutRequest
+        case 408  : return .timeOutRequest
         default     : return .undefined
         }
     }

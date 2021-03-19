@@ -92,6 +92,7 @@ class MovieDetailViewController: BaseViewController {
                     self.movieImage.getImage(from: imageURL)
                     self.colorView.backgroundColor = self.movieImage.image?.averageColor
                     self.movieImage.radius(6)
+                    self.colorView.layoutIfNeeded()
                 }).disposed(by: disposeBag)
       
         viewModel.movieTitle.distinctUntilChanged()
