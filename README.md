@@ -21,4 +21,11 @@ Esta app permitira listar peliculas disponibles en  [TheMovieDB](https://themovi
 * RxSwift: Programacion Reactiva
 * Kingfisher: Manejo de Imagenes desde url
 
+# Screens de Home y Search
 
+![Screens Principales: Home y Search](https://github.com/tarruk/MoviesApp/blob/master/Screens/screens01.png?raw=true)
+
+# Screens del detalle
+
+
+![Screens del detalle](https://github.com/tarruk/MoviesApp/blob/master/Screens/screens02.png?raw=true)
