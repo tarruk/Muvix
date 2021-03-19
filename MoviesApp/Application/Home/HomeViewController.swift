@@ -76,7 +76,7 @@ class HomeViewController: BaseViewController {
     
     
     @IBAction func scrollToTop(_ sender: Any) {
-       self.tableView.contentOffset.y = 0
+        self.tableView.setContentOffset(.zero, animated: true)
        
     }
     
