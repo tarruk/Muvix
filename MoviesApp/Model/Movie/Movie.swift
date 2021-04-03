@@ -45,6 +45,11 @@ class Movie: Codable {
             return nil
         }
     }
+    init(releaseDate: String? = nil, imagePath: String? = nil) {
+        self.releaseDate = releaseDate
+        self.posterPath = imagePath
+    }
+
                
 
     enum CodingKeys: String, CodingKey {
